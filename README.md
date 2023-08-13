@@ -2,7 +2,7 @@
 
 Consider the belief network shown below, where the random variable $W$ stores a five-letter word and the random variable $L_i \in \\{ {\tt A},{\tt B},\ldots,{\tt Z} \\}$ reveals only the word's $i^{th}$ letter. 
 
-![](hangmanBN.png)
+<div align="center"><img src="hangmanBN.png"></div>
 
 Also, suppose that these five-letter words are chosen at random from a large corpus of text according to their frequency:
 
@@ -44,7 +44,7 @@ ${ P\Big(L_2=\ell\ \mbox{\bf or}\ L_4 = \ell\ \Big|\ L_1={\tt M}, L_3={\tt D}, L
 $$
 \begin{eqnarray*}
  & = & \sum_w P\Big(W= w, L_2=\ell\ \mbox{\bf or}\ L_4=\ell\ \Big|\ L_1={\tt M}, L_3={\tt D}, L_5= {\tt M}, L_2 \not \in \\{{\tt D},{\tt I},{\tt M}\\}, L_4 \not \in \\{{\tt D},{\tt I},{\tt M}\\}\Big),\quad\fbox{\bf marginalization} \\
- & = & \sum_w P(W= w|L_1={\tt M}, L_3={\tt D}, L_5= {\tt M}, L_2 \not \in \\{{\tt D},{\tt I},{\tt M}\\}, L_4 \not \in \\{{\tt D},{\tt I},{\tt M}\\}\Big)\, P(L_2=\ell\ \mbox{\bf or}\ L_4=\ell|W=w)\ \fbox{\bf \small product rule and CI}
+ & = & \sum_w P\Big(W= w|L_1={\tt M}, L_3={\tt D}, L_5= {\tt M}, L_2 \not \in \\{{\tt D},{\tt I},{\tt M}\\}, L_4 \not \in \\{{\tt D},{\tt I},{\tt M}\\}\Big)\ P(L_2=\ell\ \mbox{\bf or}\ L_4=\ell|W=w)\ \fbox{\bf \small product rule and CI}
 \end{eqnarray*}
 $$
 
@@ -58,16 +58,16 @@ $$P(L_2=\ell\ \mbox{\bf or}\ L_4=\ell|W=w)\
 
 And the first term we obtain from Bayes rule:
 
-${P(W= w|L_1={\tt M}, L_3={\tt D}, L_5= {\tt M}, L_2 \not \in \\{{\tt D},{\tt I},{\tt M}\\}, L_4 \not \in \\{{\tt D},{\tt I},{\tt M}\\}\Big)}$
+${P\Big(W= w|L_1={\tt M}, L_3={\tt D}, L_5= {\tt M}, L_2 \not \in \\{{\tt D},{\tt I},{\tt M}\\}, L_4 \not \in \\{{\tt D},{\tt I},{\tt M}\\}\Big)}$
 
 $$\begin{eqnarray*}
-  & = & \frac{P(L_1 = {\tt M}, L_3={\tt D}, L_5= {\tt M}, L_2 \not \in \\{{\tt D},{\tt I},{\tt M}\\}, L_4 \not \in \\{{\tt D},{\tt I},{\tt M}\\}|W= w\Big) P(W= w)}
+  & = & \frac{P\Big(L_1 = {\tt M}, L_3={\tt D}, L_5= {\tt M}, L_2 \not \in \\{{\tt D},{\tt I},{\tt M}\\}, L_4 \not \in \\{{\tt D},{\tt I},{\tt M}\\}|W= w\Big) P(W= w)}
 {P(L_1={\tt M}, L_3={\tt D}, L_5= {\tt M}, L_2 \not \in \\{{\tt D},{\tt I},{\tt M}\\}, L_4 \not \in \\{{\tt D},{\tt I},{\tt M}\\})}\quad\fbox{\bf Bayes rule}
 \end{eqnarray*}$$
 
 In the numerator of Bayes rule are two terms; the left term is equal to zero or one (depending on whether the evidence is compatible with the word $w$), and the right term is the prior probability $P(W=w)$, as determined by the empirical word frequencies. The denominator of Bayes rule is given by:
 
-${P(L_1={\tt M}, L_3={\tt D}, L_5= {\tt M}, L_2\not\in\{{\tt D},{\tt I},{\tt M}\}, L_4\not\in\{{\tt D},{\tt I},{\tt M}\})}$
+${P(L_1={\tt M}, L_3={\tt D}, L_5= {\tt M}, L_2\not\in\\{{\tt D},{\tt I},{\tt M}\\}, L_4\not\in\\{{\tt D},{\tt I},{\tt M}\\})}$
 
 $$\begin{eqnarray*}
   & = & \sum_w P(W=w, L_1={\tt M}, L_3={\tt D}, L_5= {\tt M}, L_2 \not \in \\{{\tt D},{\tt I},{\tt M}\\}, L_4\not\in\\{{\tt D},{\tt I},{\tt M}\\}),\quad\fbox{\bf marginalization} \\
@@ -78,12 +78,12 @@ where again all the right terms inside the sum are equal to zero or one. Note th
  
 Now let's consider the general problem. Let $E$ denote the evidence at some intermediate round of the game: in general, some letters will have been guessed correctly and their places revealed in the word, while other letters will have been guessed incorrectly and thus revealed to be absent. There are two essential computations.  The first is the ${\it posterior}$ probability, obtained from Bayes rule:
 
-$$P(W=w|E)\ =\ \frac{P(E|W=w)\, P(W=w)}{\sum_{w'} P(E|W=w')\, P(W=w')}.$$
+$$P(W=w|E)\ =\ \frac{P(E|W=w)\ P(W=w)}{\sum_{w'} P(E|W=w')\ P(W=w')}.$$
 
 The second key computation is the ${\it predictive}$ probability, based on the evidence, that the letter $\ell$ appears somewhere in the word:
 
-$$P\Big(L_i= \ell\ \mbox{for some}\ i\in\{1,2,3,4,5\} \Big| E\Big)\
- =\  \sum_w P\Big(L_i= \ell\ \mbox{for some}\ i\in\{1,2,3,4,5\} \Big| W=w\Big) P\Big(W=w\Big|E\Big).$$
+$$P\Big(L_i= \ell\ \mbox{for some}\ i\in\\{1,2,3,4,5\\} \Big| E\Big)\
+ =\  \sum_w P\Big(L_i= \ell\ \mbox{for some}\ i\in\\{1,2,3,4,5\\} \Big| W=w\Big) P\Big(W=w\Big|E\Big).$$
 
 Note in particular how the first computation feeds into the second.
 
@@ -102,4 +102,4 @@ Based on prior probability, 15 most frequent 5-letter words and 14 least frequen
 
 Consider the following stages of the game. For each of the following, the best next guess is indicated --- namely, the letter $\ell$ that is most likely (probable) to be among the missing letters. The table also reports the probability $P(L_i= \ell\ \mbox{for some}\ i\in\\{1,2,3,4,5\\} | E)$ for the guess $\ell$.
 
-![](hangmanTable.png)
+<div align="center"><img src="hangmanTable.png"></div>
